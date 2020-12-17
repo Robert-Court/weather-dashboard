@@ -44,6 +44,63 @@
         </div>
     </div>
 </div>
-        <script src="" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        
+        $.ajax({
+            url: "https://api.openweathermap.org/data/2.5/weather?q=Melbourne&units=metric&appid=3faf3425dc1e17e275b6e83d3fccceb1",
+            method: "GET"
+        }).then(function(response) {
+            //var tBody = $("tbody");
+            
+            //var tRow = $("<tr>");
+
+            //var titleTd = $("<td>").text(response.Title);
+            //var yearTd = $("<td>").text(response.Year);
+            //var actorsTd = $("<td>").text(response.Actors);  
+
+            //tRow.append(titleTd, yearTd, actorsTd);
+
+            //tBody.append(tRow);
+            
+            console.log(response);
+            console.log("Temperature: " + response.main.temp);
+            console.log("Humidity: " + response.main.humidity);
+            console.log("Wind speed: " + response.wind.speed);
+            //console.log("Temperature " + response.main.temp);
+            
+
+        });
+
+        $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/uvi?lat=" + {lat} + "&lon=" + {lon} + "&appid=3faf3425dc1e17e275b6e83d3fccceb1",
+            method: "GET"
+        }).then(function(response) {
+            //var tBody = $("tbody");
+            
+            //var tRow = $("<tr>");
+
+            //var titleTd = $("<td>").text(response.Title);
+            //var yearTd = $("<td>").text(response.Year);
+            //var actorsTd = $("<td>").text(response.Actors);  
+
+            //tRow.append(titleTd, yearTd, actorsTd);
+
+            //tBody.append(tRow);
+            
+            console.log(response);
+            //console.log("Temperature " + response.main.temp);
+            
+
+        });
+        
+
+        function addTable() {
+            $("body").append($addTable);
+            
+            
+        }
+        
+        </script>
     </body>
 </html>
