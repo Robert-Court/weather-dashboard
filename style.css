@@ -18,3 +18,8 @@
     display:block;
     align-self: right;
 }
+
+#search-button {
+    border-color: aliceblue;
+    background-color:rgb(240, 241, 241);
+}
