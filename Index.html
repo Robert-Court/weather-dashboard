@@ -9,10 +9,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-
+<div class="conatainer">
+    <div class="card-header">
+        <h1>Weather Dashboard</h1>
+    </div>
+</div>
+<div class="conatainer">
+    <div class="row">
+        <div class = "col-sm-3 sidebar" id="sticky-sidebar">
+            <h3 class="sticky-top">
+                Search for a City
+            </h3>
+            <input type="text" id="city-search" placeholder="Search..." title="Search for a city:"></input>
+        </div>
+        <div class = "col-sm-9 main" id="main">
+            <h2>Name of selected city and date</h2>
+                <p id="temp">Temperature</p>
+                <p id="humidity">Humidity</p>
+                <p id="wind-speed">Wind speed</p>
+                <p id="uv-index">UV Index</p>
+            <h3>5-day forecast</h3>
+                <div class="weather-card">Day 1</div>
+                <div class="weather-card">Day 2</div>
+                <div class="weather-card">Day 3</div>
+                <div class="weather-card">Day 4</div>
+                <div class="weather-card">Day 5</div>
+        </div>
+    </div>
+</div>
         <script src="" async defer></script>
     </body>
 </html>
