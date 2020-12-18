@@ -17,6 +17,8 @@
     margin-left:20%;
     display:block;
     align-self: right;
+    background-color: rgb(240, 248, 202);
+    padding: 5%;
 }
 
 #search-button {
