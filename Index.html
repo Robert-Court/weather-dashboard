@@ -29,18 +29,18 @@
                 <button id="search-button"><i class="fas fa-search"></i></button>
             </form>
         </div>
-        <div class = "col-sm-9 main" id="main">
+        <div class = "col-sm-9 main" id="cityInfo">
             <h3 id="selectedCity"> </h3>
                 <div id="temp"></div>
                 <div id="humidity"></div>
                 <div id="wind-speed"></div>
                 <div id="uv-index"></div>
-            <h3>5-day forecast</h3>
-                <div class="weather-card">Day 1</div>
-                <div class="weather-card">Day 2</div>
-                <div class="weather-card">Day 3</div>
-                <div class="weather-card">Day 4</div>
-                <div class="weather-card">Day 5</div>
+            <h3 id="forecast"></h3>
+                <div id="day1" class="weather-card"></div>
+                <div id="day2" class="weather-card"></div>
+                <div id="day3" class="weather-card"></div>
+                <div id="day4" class="weather-card"></div>
+                <div id="day5" class="weather-card"></div>
         </div>
     </div>
 </div>
@@ -59,7 +59,7 @@
                     method: "GET"
                 }).then(function(response) {
                     console.log(response);
-                    $('#selectedCity').append(userCity + ", ");
+                    $('#selectedCity').append(userCity + "- ");
                     $("#selectedCity").append(currentDay);
                     
                     prevSearches.push(userCity);
@@ -71,9 +71,11 @@
                     //$("#currentDay").empty();
                     //$("#currentDay").append("<p>",currentDay,"</p>");
 
-                    $('#temp').append("Temperature: " + (JSON.stringify(response.main.temp)));
-                    $('#humidity').append("Humidity: " + (JSON.stringify(response.main.humidity)));
-                    $('#wind-speed').append("Wind Speed: " + (JSON.stringify(response.wind.speed)));
+                    $('#temp').append("Temperature: " + (JSON.stringify(response.main.temp)) + " C&#176;");
+                    $('#humidity').append("Humidity: " + (JSON.stringify(response.main.humidity)) + "%");
+                    $('#wind-speed').append("Wind Speed: " + (JSON.stringify(response.wind.speed)) + "km/h");
+
+                    //UV Index
 
                     var lat = response.coord.lat;
                     var lon = response.coord.lon;
@@ -84,6 +86,27 @@
                     }).then(function(response) {
                 
                     $('#uv-index').append("UV Index: " + (JSON.stringify(response.value)));
+
+                    });
+
+                    //5-day Forecast
+
+                    $.ajax({
+                        url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=metric&appid=3faf3425dc1e17e275b6e83d3fccceb1",
+                        method: "GET"
+                    }).then(function(response) {
+                        console.log(response);
+                        $('#forecast').append("5-day Forecast");
+                        var dayPlusOne = (moment().add(1, 'days').format('dddd'));
+                        $('#day1').append(dayPlusOne + " = " + (JSON.stringify(response.daily[0].temp.max)));
+                        var dayPlusTwo = (moment().add(2, 'days').format('dddd'));
+                        $('#day2').append(dayPlusTwo + " = " + (JSON.stringify(response.daily[1].temp.max)));
+                        var dayPlusThree = (moment().add(3, 'days').format('dddd'));
+                        $('#day3').append(dayPlusThree + " = " + (JSON.stringify(response.daily[2].temp.max)));
+                        var dayPlusFour = (moment().add(4, 'days').format('dddd'));
+                        $('#day4').append(dayPlusFour + " = " + (JSON.stringify(response.daily[3].temp.max)));
+                        var dayPlusFive = (moment().add(5, 'days').format('dddd'));
+                        $('#day5').append(dayPlusFive + " = " + (JSON.stringify(response.daily[4].temp.max)));
 
                     });
                 });        
