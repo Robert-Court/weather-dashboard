@@ -28,6 +28,9 @@
                 <input type="text" id="city-search" placeholder="Search..." title="Search for a city:"></input>
                 <button id="search-button"><i class="fas fa-search"></i></button>
             </form>
+            <div>
+                <ul id="search-cities"><strong>Previous Searches...</strong></ul>
+            </div>
         </div>
         <div class = "col-sm-9 main" id="cityInfo">
             <h3 id="selectedCity"> </h3>
@@ -48,8 +51,21 @@
     <script src="moment.js"></script>
         <script type="text/javascript">
 
+            
             $("#search-button").on("click", function(event) {
                 event.preventDefault();
+                //clear previous search
+                    $('#selectedCity').empty();
+                    $('#temp').empty();
+                    $('#humidity').empty();
+                    $('#wind-speed').empty();
+                    $('#uv-index').empty();
+                    $('#forecast').empty();
+                    $('#day1').empty();
+                    $('#day2').empty();
+                    $('#day3').empty();
+                    $('#day4').empty();
+                    $('#day5').empty();
                 var userCity = $("#city-search").val();
                 var currentDay = (moment().format('dddd, MMMM Do'));
                 var prevSearches = [];
@@ -63,13 +79,14 @@
                     $("#selectedCity").append(currentDay);
                     
                     prevSearches.push(userCity);
-                    window.localStorage.setItem('searches', JSON.stringify(prevSearches))
+
+                    function storesearches() {
+                    localStorage.setItem('searches', JSON.stringify(prevSearches))
+                    }
+                    
                     var searchHis = JSON.parse(localStorage.getItem('searches'));
-                    console.log(searchHis);
+                    $("#search-cities").append('<li>',searchHis,'</a>'); 
 
-
-                    //$("#currentDay").empty();
-                    //$("#currentDay").append("<p>",currentDay,"</p>");
 
                     $('#temp').append("Temperature: " + (JSON.stringify(response.main.temp)) + " C&#176;");
                     $('#humidity').append("Humidity: " + (JSON.stringify(response.main.humidity)) + "%");
