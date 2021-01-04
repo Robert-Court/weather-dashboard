@@ -74,8 +74,8 @@
                     url: "https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&units=metric&appid=3faf3425dc1e17e275b6e83d3fccceb1",
                     method: "GET"
                 }).then(function(response) {
-                    console.log(response);
-                    $('#selectedCity').append(userCity + "- ");
+                    console.log(userCity);
+                    $('#selectedCity').append(userCity + " - ");
                     $("#selectedCity").append(currentDay);
                     
                     prevSearches.push(userCity);
@@ -113,17 +113,17 @@
                         method: "GET"
                     }).then(function(response) {
                         console.log(response);
-                        $('#forecast').append("5-day Forecast");
+                        $('#forecast').append("5-day forecast for " + userCity + ":");
                         var dayPlusOne = (moment().add(1, 'days').format('dddd'));
-                        $('#day1').append(dayPlusOne + " = " + (JSON.stringify(response.daily[0].temp.max)));
+                        $('#day1').append(dayPlusOne + " = " + (JSON.stringify(response.daily[0].temp.max)) + " C&#176;");
                         var dayPlusTwo = (moment().add(2, 'days').format('dddd'));
-                        $('#day2').append(dayPlusTwo + " = " + (JSON.stringify(response.daily[1].temp.max)));
+                        $('#day2').append(dayPlusTwo + " = " + (JSON.stringify(response.daily[1].temp.max)) + " C&#176;");
                         var dayPlusThree = (moment().add(3, 'days').format('dddd'));
-                        $('#day3').append(dayPlusThree + " = " + (JSON.stringify(response.daily[2].temp.max)));
+                        $('#day3').append(dayPlusThree + " = " + (JSON.stringify(response.daily[2].temp.max)) + " C&#176;");
                         var dayPlusFour = (moment().add(4, 'days').format('dddd'));
-                        $('#day4').append(dayPlusFour + " = " + (JSON.stringify(response.daily[3].temp.max)));
+                        $('#day4').append(dayPlusFour + " = " + (JSON.stringify(response.daily[3].temp.max)) + " C&#176;");
                         var dayPlusFive = (moment().add(5, 'days').format('dddd'));
-                        $('#day5').append(dayPlusFive + " = " + (JSON.stringify(response.daily[4].temp.max)));
+                        $('#day5').append(dayPlusFive + " = " + (JSON.stringify(response.daily[4].temp.max)) + " C&#176;");
 
                     });
                 });        

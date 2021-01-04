@@ -29,3 +29,7 @@
 #search-cities .li {
     background-color: black;
 }
+
+#forecast {
+    padding-top: 5%;
+}
